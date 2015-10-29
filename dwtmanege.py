@@ -25,7 +25,11 @@ def daubechies(order, polyphase=True):
     :param polyphase: whether the output should be return in polyphase form
     :return: the daubieches-<order> coefficients
     """
-    if order is 1:
+    k=0.5
+    if order is 0:
+        c = [k, k]
+        d = [-k ,k]
+    elif order is 1:
         c = [0.7071067812, 0.7071067812]
         d = [-0.7071067812, 0.7071067812]
     elif order is 2:
@@ -155,16 +159,15 @@ def test_2():
     # obtain a grey-scale image of Lena
     image = misc.lena().astype(dtype=float)
     src_rgb_img = io.imread('Child_input.png')
-    #src_rgb_img = io.imread('aero.png')
+    src_rgb_img = io.imread('aero.png')
 
-    src_Lab_img = color.rgb2lab(src_rgb_img)
-    image = src_Lab_img[:,:,0]
+    #src_Lab_img = color.rgb2lab(src_rgb_img)
+    #image = src_Lab_img[:,:,0]
     #image =src_rgb_img
     # specific decomposition depth
     l = 1
 
-    # obtain the low-pass and high-pass coefficients in polyphase form
-    poly = daubechies(order=2)
+    poly = daubechies(order=1)
     print poly
     # apply an l-level wavelet decomposition
     decomposition = dwt_2d(image, poly, l)
