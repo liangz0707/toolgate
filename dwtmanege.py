@@ -193,4 +193,4 @@ def test_2():
     ax[1, 0].set_title('result after {}-level wavelet decomposition'.format(l))
     plt.show()
 
-test_2()
+#test_2()
